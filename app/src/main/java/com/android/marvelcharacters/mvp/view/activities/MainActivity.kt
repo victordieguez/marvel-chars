@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity(), MainView {
 private class CharactersRecyclerViewAdapter(private val characters: List<MarvelCharacter>) : RecyclerView.Adapter<CharactersRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val viewHolder = LayoutInflater.from(parent.context).inflate(R.layout.adapter_item_layout, parent, false)
+        val viewHolder = LayoutInflater.from(parent.context).inflate(R.layout.character_row_layout, parent, false)
         return ViewHolder(viewHolder);
     }
 
