@@ -11,5 +11,8 @@ interface NetworkURL {
     }
 
     @GET("characters")
-    fun getCharacters(@Query("apikey") key: String, @Query("ts") time: Long, @Query("hash") hash: String): Call<CharacterDataWrapper>
+    fun getCharacters(): Call<CharacterDataWrapper>
+
+    @GET("characters")
+    fun getCharactersByNameStart(@Query("nameStartsWith") key: String): Call<CharacterDataWrapper>
 }
