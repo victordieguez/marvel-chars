@@ -5,7 +5,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +13,7 @@ import com.android.marvelcharacters.R
 import com.android.marvelcharacters.mvp.presenter.MainPresenter
 import com.android.marvelcharacters.mvp.view.MainView
 import com.android.marvelcharacters.mvp.view.adapters.CharactersRecyclerViewAdapter
+import com.android.marvelcharacters.mvp.view.adapters.RecyclerViewOnScrollListener
 import com.android.marvelcharacters.network.dtos.MarvelCharacter
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -21,28 +21,47 @@ class MainActivity : AppCompatActivity(), MainView {
 
     private var mainPresenter: MainPresenter? = null
 
+    private var adapter: CharactersRecyclerViewAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mainPresenter = MainPresenter(this, this)
 
-        charactersProgressBar.visibility = View.VISIBLE
-        mainPresenter?.searchByName("")
+        adapter = CharactersRecyclerViewAdapter()
+        charactersRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        charactersRecyclerView.adapter = adapter
+
+        mainPresenter?.searchCharacters()
         searchImageButton.setOnClickListener {
-            charactersProgressBar.visibility = View.VISIBLE
-            mainPresenter?.searchByName(characterNameEditText.text.toString())
+            mainPresenter?.searchCharacters()
         }
     }
 
-    override fun onCharactersSearchSuccess(characters: List<MarvelCharacter>) {
-        charactersRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        charactersRecyclerView.adapter = CharactersRecyclerViewAdapter(characters)
+    override fun onCharactersSearchSuccess(characters: List<MarvelCharacter>, offset: Int, count: Int, total: Int) {
+        adapter?.setCharacters(characters)
+        adapter?.notifyDataSetChanged()
+        charactersRecyclerView.clearOnScrollListeners()
+        if (mainPresenter != null) {
+            charactersRecyclerView.addOnScrollListener(RecyclerViewOnScrollListener(mainPresenter!!, offset, count, total))
+        }
+        charactersProgressBar.visibility = View.GONE
+        hideKeyboard()
+    }
+
+    override fun onNextPageCharactersSearchSuccess(characters: List<MarvelCharacter>, offset: Int, count: Int, total: Int) {
+        adapter?.addCharacters(characters)
+        adapter?.notifyDataSetChanged()
+        charactersRecyclerView.clearOnScrollListeners()
+        if (mainPresenter != null) {
+            charactersRecyclerView.addOnScrollListener(RecyclerViewOnScrollListener(mainPresenter!!, offset, count, total))
+        }
         charactersProgressBar.visibility = View.GONE
         hideKeyboard()
     }
 
     override fun onCharactersSearchFailure() {
-        charactersRecyclerView.adapter = CharactersRecyclerViewAdapter(listOf())
+        charactersRecyclerView.adapter = CharactersRecyclerViewAdapter()
         charactersProgressBar.visibility = View.GONE
         Toast.makeText(this, "Error loading characters", Toast.LENGTH_SHORT).show()
         hideKeyboard()

@@ -11,7 +11,18 @@ import com.android.marvelcharacters.network.dtos.MarvelCharacter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
-class CharactersRecyclerViewAdapter(private val characters: List<MarvelCharacter>) : RecyclerView.Adapter<CharactersRecyclerViewAdapter.ViewHolder>() {
+class CharactersRecyclerViewAdapter() : RecyclerView.Adapter<CharactersRecyclerViewAdapter.ViewHolder>() {
+
+    private var characters = mutableListOf<MarvelCharacter>()
+
+    fun setCharacters(characters: List<MarvelCharacter>) {
+        this.characters.clear()
+        this.characters.addAll(characters)
+    }
+
+    fun addCharacters(characters: List<MarvelCharacter>) {
+        this.characters.addAll(characters)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val viewHolder = LayoutInflater.from(parent.context).inflate(R.layout.character_row_layout, parent, false)

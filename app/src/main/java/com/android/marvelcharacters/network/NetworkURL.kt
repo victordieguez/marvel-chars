@@ -11,8 +11,8 @@ interface NetworkURL {
     }
 
     @GET("characters")
-    fun getCharacters(): Call<CharacterDataWrapper>
+    fun getCharacters(@Query("offset") offset: Int): Call<CharacterDataWrapper>
 
     @GET("characters")
-    fun getCharactersByNameStart(@Query("nameStartsWith") key: String): Call<CharacterDataWrapper>
+    fun getCharactersByNameStart(@Query("nameStartsWith") name: String, @Query("offset") offset: Int): Call<CharacterDataWrapper>
 }
