@@ -29,12 +29,10 @@ class CharactersRecyclerViewAdapter(private val characters: List<MarvelCharacter
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val characterImageView = itemView.findViewById<ImageView>(R.id.characterImageView)
         private val nameTextView = itemView.findViewById<TextView>(R.id.nameTextView)
-        private val descriptionTextView = itemView.findViewById<TextView>(R.id.descriptionTextView)
 
         fun bind(character: MarvelCharacter) {
             Glide.with(itemView.context).load(character.getImage()).diskCacheStrategy(DiskCacheStrategy.ALL).into(characterImageView)
             nameTextView.text = character.name
-            descriptionTextView.text = character.description
         }
     }
 }

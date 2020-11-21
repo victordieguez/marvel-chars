@@ -2,16 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:padding="16dp">
+
+    <ImageButton
+        android:id="@+id/searchImageButton"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/baseline_search_24"
+        android:background="@drawable/search_button"
+        android:layout_alignBottom="@id/characterNameEditText"
+        android:layout_alignTop="@id/characterNameEditText"
+        android:contentDescription="Search button" />
 
     <EditText
         android:id="@+id/characterNameEditText"
         android:layout_width="match_parent"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/white"
+        android:layout_toStartOf="@id/searchImageButton"
         android:ems="10"
-        android:hint="Name"
+        android:hint="@string/name_hint"
         android:inputType="textPersonName" />
 
     <androidx.recyclerview.widget.RecyclerView
