@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.marvelcharacters.R
 import com.android.marvelcharacters.network.dtos.MarvelCharacter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 class CharactersRecyclerViewAdapter(private val characters: List<MarvelCharacter>) : RecyclerView.Adapter<CharactersRecyclerViewAdapter.ViewHolder>() {
 
@@ -31,7 +32,7 @@ class CharactersRecyclerViewAdapter(private val characters: List<MarvelCharacter
         private val descriptionTextView = itemView.findViewById<TextView>(R.id.descriptionTextView)
 
         fun bind(character: MarvelCharacter) {
-            Glide.with(itemView.context).load(character.getImage()).into(characterImageView)
+            Glide.with(itemView.context).load(character.getImage()).diskCacheStrategy(DiskCacheStrategy.ALL).into(characterImageView)
             nameTextView.text = character.name
             descriptionTextView.text = character.description
         }
