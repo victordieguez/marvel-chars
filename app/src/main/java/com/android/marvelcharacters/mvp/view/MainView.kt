@@ -1,6 +1,6 @@
 package com.android.marvelcharacters.mvp.view
 
-import com.android.marvelcharacters.database.entities.MarvelCharacter
+import com.android.marvelcharacters.network.dtos.MarvelCharacter
 
 interface MainView {
 

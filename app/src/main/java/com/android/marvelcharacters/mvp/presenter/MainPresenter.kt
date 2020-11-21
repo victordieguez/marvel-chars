@@ -1,7 +1,7 @@
 package com.android.marvelcharacters.mvp.presenter
 
 import android.content.Context
-import com.android.marvelcharacters.database.entities.MarvelCharacter
+import com.android.marvelcharacters.network.dtos.MarvelCharacter
 import com.android.marvelcharacters.mvp.interactor.MainInteractor
 import com.android.marvelcharacters.mvp.view.MainView
 
