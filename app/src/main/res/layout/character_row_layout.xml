@@ -15,7 +15,7 @@
             android:id="@+id/characterImageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:contentDescription="Character image" />
+            android:contentDescription="@string/character" />
 
         <LinearLayout
             android:layout_width="match_parent"

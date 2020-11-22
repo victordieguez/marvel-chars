@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), MainView {
 
     private var mainPresenter: MainPresenter? = null
-
     private var adapter: CharactersRecyclerViewAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,25 +31,18 @@ class MainActivity : AppCompatActivity(), MainView {
         charactersRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         charactersRecyclerView.adapter = adapter
 
-        mainPresenter?.searchCharacters()
+        mainPresenter?.searchCharacters(0)
         searchImageButton.setOnClickListener {
-            mainPresenter?.searchCharacters()
+            mainPresenter?.searchCharacters(0)
         }
     }
 
     override fun onCharactersSearchSuccess(characters: List<MarvelCharacter>, offset: Int, count: Int, total: Int) {
-        adapter?.setCharacters(characters)
-        adapter?.notifyDataSetChanged()
-        charactersRecyclerView.clearOnScrollListeners()
-        if (mainPresenter != null) {
-            charactersRecyclerView.addOnScrollListener(RecyclerViewOnScrollListener(mainPresenter!!, offset, count, total))
+        if (offset == 0) {
+            adapter?.setCharacters(characters)
+        } else {
+            adapter?.addCharacters(characters)
         }
-        charactersProgressBar.visibility = View.GONE
-        hideKeyboard()
-    }
-
-    override fun onNextPageCharactersSearchSuccess(characters: List<MarvelCharacter>, offset: Int, count: Int, total: Int) {
-        adapter?.addCharacters(characters)
         adapter?.notifyDataSetChanged()
         charactersRecyclerView.clearOnScrollListeners()
         if (mainPresenter != null) {

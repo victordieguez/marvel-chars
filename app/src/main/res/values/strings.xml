@@ -3,4 +3,6 @@
     <string name="public_api_key">e88e2e37dc9a28d6c2462c8cef787432</string>
     <string name="private_api_key">99785ffa9a37ed5d3f8e8419a13c0fe20edc706f</string>
     <string name="name_hint">Name</string>
+    <string name="search">Search</string>
+    <string name="character">Character</string>
 </resources>

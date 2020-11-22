@@ -10,29 +10,31 @@
         android:id="@+id/searchImageButton"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:src="@drawable/baseline_search_24"
-        android:background="@drawable/search_button"
-        android:layout_alignBottom="@id/characterNameEditText"
         android:layout_alignTop="@id/characterNameEditText"
-        android:contentDescription="Search button" />
+        android:layout_alignBottom="@id/characterNameEditText"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/search_button"
+        android:contentDescription="@string/search"
+        android:src="@drawable/baseline_search_24" />
 
     <EditText
         android:id="@+id/characterNameEditText"
         android:layout_width="match_parent"
-        android:textColor="@color/white"
         android:layout_height="wrap_content"
-        android:textColorHint="@color/white"
         android:layout_toStartOf="@id/searchImageButton"
         android:ems="10"
         android:hint="@string/name_hint"
-        android:inputType="textPersonName" />
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/charactersRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/characterNameEditText" />
+        android:layout_below="@id/characterNameEditText"
+        android:paddingTop="4dp" />
 
     <ProgressBar
         android:id="@+id/charactersProgressBar"

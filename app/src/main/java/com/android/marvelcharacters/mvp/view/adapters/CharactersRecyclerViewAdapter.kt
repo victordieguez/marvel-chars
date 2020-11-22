@@ -17,7 +17,7 @@ class CharactersRecyclerViewAdapter() : RecyclerView.Adapter<CharactersRecyclerV
 
     fun setCharacters(characters: List<MarvelCharacter>) {
         this.characters.clear()
-        this.characters.addAll(characters)
+        addCharacters(characters)
     }
 
     fun addCharacters(characters: List<MarvelCharacter>) {
