@@ -1,6 +1,7 @@
 package com.android.marvelcharacters.network
 
 import com.android.marvelcharacters.network.dtos.CharacterDataWrapper
+import com.android.marvelcharacters.network.dtos.ComicDataWrapper
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -19,4 +20,7 @@ interface NetworkURL {
 
     @GET("characters/{characterId}")
     fun getCharacter(@Path("characterId") characterId: Long): Call<CharacterDataWrapper>
+
+    @GET("characters/{characterId}/comics")
+    fun getCharacterComics(@Path("characterId") characterId: Long): Call<ComicDataWrapper>
 }

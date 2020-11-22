@@ -5,6 +5,7 @@ import com.android.marvelcharacters.mvp.presenter.CharacterPresenter
 import com.android.marvelcharacters.network.NetworkService
 import com.android.marvelcharacters.network.NetworkURL
 import com.android.marvelcharacters.network.dtos.CharacterDataWrapper
+import com.android.marvelcharacters.network.dtos.ComicDataWrapper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,6 +31,25 @@ class CharacterInteractor(private val characterPresenter: CharacterPresenter, pr
 
             override fun onFailure(call: Call<CharacterDataWrapper>, t: Throwable) {
                 characterPresenter.onCharacterSearchFailure()
+            }
+        })
+    }
+
+    fun searchComics(id: Long) {
+        val request = NetworkService.buildService(NetworkURL::class.java, context)
+        val call = request.getCharacterComics(id)
+        call.enqueue(object : Callback<ComicDataWrapper> {
+            override fun onResponse(call: Call<ComicDataWrapper>, response: Response<ComicDataWrapper>) {
+                if (response.isSuccessful && response.body() != null) {
+                    val data = response.body()!!.data
+                    characterPresenter.onComicsSearchSuccess(data.results, data.offset, data.count, data.total)
+                } else {
+                    characterPresenter.onComicsSearchFailure()
+                }
+            }
+
+            override fun onFailure(call: Call<ComicDataWrapper>, t: Throwable) {
+                characterPresenter.onComicsSearchFailure()
             }
         })
     }

@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.android.marvelcharacters.R
 import com.android.marvelcharacters.mvp.view.activities.CharacterTab1Biography
+import com.android.marvelcharacters.mvp.view.activities.CharacterTab2Comics
 
 class PagerAdapter(fm: FragmentManager, private val characterId: Long, private val context: Context) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
@@ -31,10 +32,9 @@ class PagerAdapter(fm: FragmentManager, private val characterId: Long, private v
         //TODO IR HACIENDO FRAGMENTS
         when (position) {
             0 -> return CharacterTab1Biography.newInstance(characterId)
-            1 -> return CharacterTab1Biography.newInstance(characterId)
+            1 -> return CharacterTab2Comics.newInstance(characterId)
             2 -> return CharacterTab1Biography.newInstance(characterId)
             3 -> return CharacterTab1Biography.newInstance(characterId)
-            //1 -> return CharacterTab2Comics.newInstance(characterId)
             //2 -> return CharacterTab3Series.newInstance(characterId)
             //3 -> return CharacterTab4Events.newInstance(characterId)
         }
