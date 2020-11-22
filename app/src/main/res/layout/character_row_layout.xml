@@ -8,9 +8,11 @@
     card_view:cardCornerRadius="4dp">
 
     <LinearLayout
+        android:id="@+id/characterRow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey">
+        android:background="@drawable/character_row_selector"
+        android:clickable="true">
 
         <ImageView
             android:id="@+id/characterImageView"
