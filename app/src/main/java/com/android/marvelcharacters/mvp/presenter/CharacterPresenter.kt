@@ -9,8 +9,10 @@ import com.android.marvelcharacters.mvp.interactor.CharacterInteractor
 import com.android.marvelcharacters.mvp.view.CharacterView
 import com.android.marvelcharacters.mvp.view.activities.CharacterTab1Biography
 import com.android.marvelcharacters.mvp.view.activities.CharacterTab2Comics
+import com.android.marvelcharacters.mvp.view.activities.CharacterTab3Series
 import com.android.marvelcharacters.network.dtos.MarvelCharacter
 import com.android.marvelcharacters.network.dtos.MarvelComic
+import com.android.marvelcharacters.network.dtos.MarvelSeries
 
 class CharacterPresenter(private val characterView: CharacterView, private val context: Context) {
 
@@ -24,6 +26,11 @@ class CharacterPresenter(private val characterView: CharacterView, private val c
     fun searchComics(id: Long, offset: Int) {
         (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.VISIBLE
         characterInteractor.searchComics(id, offset)
+    }
+
+    fun searchSeries(id: Long, offset: Int) {
+        (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.VISIBLE
+        characterInteractor.searchSeries(id, offset)
     }
 
     fun onCharacterSearchSuccess(character: MarvelCharacter) {
@@ -44,5 +51,15 @@ class CharacterPresenter(private val characterView: CharacterView, private val c
     fun onComicsSearchFailure() {
         (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
         (characterView as CharacterTab2Comics).onComicsSearchFailure()
+    }
+
+    fun onSeriesSearchSuccess(characterId: Long, series: List<MarvelSeries>, offset: Int, count: Int, total: Int) {
+        (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
+        (characterView as CharacterTab3Series).onSeriesSearchSuccess(characterId, series, offset, count, total)
+    }
+
+    fun onSeriesSearchFailure() {
+        (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
+        (characterView as CharacterTab3Series).onSeriesSearchFailure()
     }
 }

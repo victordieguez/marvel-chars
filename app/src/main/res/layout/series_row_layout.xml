@@ -29,6 +29,6 @@
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:layout_marginTop="8dp"
-            android:contentDescription="@string/characterTab2Title" />
+            android:contentDescription="@string/characterTab3Title" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
