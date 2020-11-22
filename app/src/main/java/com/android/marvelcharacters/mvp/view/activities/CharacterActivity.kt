@@ -16,7 +16,6 @@ class CharacterActivity : AppCompatActivity(), CharacterView {
         if (characterId != null) {
             tabLayout.setupWithViewPager(viewPager)
             viewPager.adapter = PagerAdapter(supportFragmentManager, characterId, applicationContext)
-            title
         } else {
             finish()
         }

@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), MainView {
     override fun onCharactersSearchFailure() {
         charactersRecyclerView.adapter = CharactersRecyclerViewAdapter()
         charactersProgressBar.visibility = View.GONE
-        Toast.makeText(this, "Error loading characters", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.characters_load_error), Toast.LENGTH_SHORT).show()
         hideKeyboard()
     }
 

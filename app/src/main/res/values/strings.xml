@@ -9,4 +9,6 @@
     <string name="characterTab2Title">Comics</string>
     <string name="characterTab3Title">Series</string>
     <string name="characterTab4Title">Events</string>
+    <string name="character_load_error">Error loading character</string>
+    <string name="characters_load_error">Error loading characters</string>
 </resources>
