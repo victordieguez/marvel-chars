@@ -73,6 +73,6 @@ class CharacterTab4Events : Fragment(), CharacterView {
      */
     fun onEventsSearchFailure() {
         rootView.findViewById<RecyclerView>(R.id.recyclerView).adapter = EventsRecyclerViewAdapter()
-        Toast.makeText(rootView.context, getString(R.string.characters_load_error), Toast.LENGTH_SHORT).show()
+        Toast.makeText(rootView.context, getString(R.string.events_load_error), Toast.LENGTH_SHORT).show()
     }
 }

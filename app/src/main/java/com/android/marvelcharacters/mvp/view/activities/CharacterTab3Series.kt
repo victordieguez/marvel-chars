@@ -73,6 +73,6 @@ class CharacterTab3Series : Fragment(), CharacterView {
      */
     fun onSeriesSearchFailure() {
         rootView.findViewById<RecyclerView>(R.id.recyclerView).adapter = SeriesRecyclerViewAdapter()
-        Toast.makeText(rootView.context, getString(R.string.characters_load_error), Toast.LENGTH_SHORT).show()
+        Toast.makeText(rootView.context, getString(R.string.series_load_error), Toast.LENGTH_SHORT).show()
     }
 }
