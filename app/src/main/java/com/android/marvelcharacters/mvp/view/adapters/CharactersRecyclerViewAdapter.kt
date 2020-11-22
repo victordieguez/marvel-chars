@@ -52,6 +52,7 @@ class CharactersRecyclerViewAdapter() : RecyclerView.Adapter<CharactersRecyclerV
             characterRow.setOnClickListener {
                 val intent = Intent(itemView.context, CharacterActivity::class.java)
                 intent.putExtra("characterId", it.tag.toString().toLong())
+                intent.putExtra("name", nameTextView.text.toString())
                 itemView.context.startActivity(intent)
             }
 

@@ -5,4 +5,8 @@
     <string name="name_hint">Name</string>
     <string name="search">Search</string>
     <string name="character">Character</string>
+    <string name="characterTab1Title">Biography</string>
+    <string name="characterTab2Title">Comics</string>
+    <string name="characterTab3Title">Series</string>
+    <string name="characterTab4Title">Events</string>
 </resources>
