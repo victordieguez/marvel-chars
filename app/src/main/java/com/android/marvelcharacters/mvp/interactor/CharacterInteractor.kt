@@ -15,7 +15,7 @@ import retrofit2.Response
 class CharacterInteractor(private val characterPresenter: CharacterPresenter, private val context: Context) {
 
     companion object {
-        const val MAX_LIMIT = 100
+        const val MAX_LIMIT = 50
     }
 
     fun searchCharacter(id: Long) {

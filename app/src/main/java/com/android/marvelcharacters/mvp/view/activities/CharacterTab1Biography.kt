@@ -55,7 +55,8 @@ class CharacterTab1Biography : Fragment(), CharacterView {
             val currentZonedDateTime = ldt.atZone(currentZoneId)
             val format = DateTimeFormatter.ofPattern("dd/MM/yyyy")
 
-            rootView.findViewById<TextView>(R.id.lastModificationTextView).text = format.format(currentZonedDateTime)
+            val dateString = String.format(context!!.resources.getString(R.string.lastUpdate), format.format(currentZonedDateTime))
+            rootView.findViewById<TextView>(R.id.lastModificationTextView).text = dateString
         } catch (ignored: Exception) {
             //Some dates can come with wrong format with negative value
         }

@@ -11,4 +11,5 @@
     <string name="characterTab4Title">Events</string>
     <string name="character_load_error">Error loading character</string>
     <string name="characters_load_error">Error loading characters</string>
+    <string name="lastUpdate">Last update: %1$s</string>
 </resources>
