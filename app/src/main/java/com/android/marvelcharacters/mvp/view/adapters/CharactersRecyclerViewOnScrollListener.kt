@@ -5,7 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.marvelcharacters.mvp.presenter.MainPresenter
 
-class RecyclerViewOnScrollListener(private val mainPresenter: MainPresenter, private val offset: Int, private val count: Int, private val total: Int) : RecyclerView.OnScrollListener() {
+class CharactersRecyclerViewOnScrollListener(private val mainPresenter: MainPresenter, private val name: String, private val offset: Int, private val count: Int, private val total: Int) :
+    RecyclerView.OnScrollListener() {
 
     private var searching = false
     private val threshold = 2
@@ -22,7 +23,7 @@ class RecyclerViewOnScrollListener(private val mainPresenter: MainPresenter, pri
         if (!isLastPage && isAtEndOfRecyclerView) {
             if (!searching) {
                 searching = true
-                mainPresenter.searchCharacters(offset + count)
+                mainPresenter.searchCharacters(name, offset + count)
             }
             Log.d("TAG", "Debe cargar la siguiente página: offset = ${offset + count}")
         } else {

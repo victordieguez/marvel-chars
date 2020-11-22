@@ -11,7 +11,7 @@ import retrofit2.Response
 
 class MainInteractor(private val mainPresenter: MainPresenter, private val context: Context) {
 
-    fun searchByName(name: String, offset: Int) {
+    fun searchCharacters(name: String, offset: Int) {
         val request = NetworkService.buildService(NetworkURL::class.java, context)
         val call = if (name.isEmpty()) {
             request.getCharacters(offset)

@@ -13,7 +13,7 @@ import com.android.marvelcharacters.R
 import com.android.marvelcharacters.mvp.presenter.MainPresenter
 import com.android.marvelcharacters.mvp.view.MainView
 import com.android.marvelcharacters.mvp.view.adapters.CharactersRecyclerViewAdapter
-import com.android.marvelcharacters.mvp.view.adapters.RecyclerViewOnScrollListener
+import com.android.marvelcharacters.mvp.view.adapters.CharactersRecyclerViewOnScrollListener
 import com.android.marvelcharacters.network.dtos.MarvelCharacter
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -31,9 +31,9 @@ class MainActivity : AppCompatActivity(), MainView {
         charactersRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         charactersRecyclerView.adapter = adapter
 
-        mainPresenter?.searchCharacters(0)
+        mainPresenter?.searchCharacters(characterNameEditText.text.toString(), 0)
         searchImageButton.setOnClickListener {
-            mainPresenter?.searchCharacters(0)
+            mainPresenter?.searchCharacters(characterNameEditText.text.toString(), 0)
         }
     }
 
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), MainView {
         adapter?.notifyDataSetChanged()
         charactersRecyclerView.clearOnScrollListeners()
         if (mainPresenter != null) {
-            charactersRecyclerView.addOnScrollListener(RecyclerViewOnScrollListener(mainPresenter!!, offset, count, total))
+            charactersRecyclerView.addOnScrollListener(CharactersRecyclerViewOnScrollListener(mainPresenter!!, characterNameEditText.text.toString(), offset, count, total))
         }
         charactersProgressBar.visibility = View.GONE
         hideKeyboard()
