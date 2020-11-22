@@ -16,8 +16,8 @@ class CharacterPresenter(private val characterView: CharacterView, private val c
         characterInteractor.searchCharacter(id)
     }
 
-    fun searchComics(id: Long) {
-        characterInteractor.searchComics(id)
+    fun searchComics(id: Long, offset: Int) {
+        characterInteractor.searchComics(id, offset)
     }
 
     fun onCharacterSearchSuccess(character: MarvelCharacter) {
@@ -28,8 +28,8 @@ class CharacterPresenter(private val characterView: CharacterView, private val c
         (characterView as CharacterTab1Biography).onCharacterSearchFailure()
     }
 
-    fun onComicsSearchSuccess(comics: List<MarvelComic>, offset: Int, count: Int, total: Int) {
-        (characterView as CharacterTab2Comics).onComicsSearchSuccess(comics, offset, count, total)
+    fun onComicsSearchSuccess(characterId: Long, comics: List<MarvelComic>, offset: Int, count: Int, total: Int) {
+        (characterView as CharacterTab2Comics).onComicsSearchSuccess(characterId, comics, offset, count, total)
     }
 
     fun onComicsSearchFailure() {

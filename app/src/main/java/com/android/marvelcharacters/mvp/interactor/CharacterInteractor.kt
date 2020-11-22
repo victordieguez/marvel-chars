@@ -12,6 +12,10 @@ import retrofit2.Response
 
 class CharacterInteractor(private val characterPresenter: CharacterPresenter, private val context: Context) {
 
+    companion object {
+        const val MAX_LIMIT = 100
+    }
+
     fun searchCharacter(id: Long) {
         val request = NetworkService.buildService(NetworkURL::class.java, context)
         val call = request.getCharacter(id)
@@ -35,14 +39,14 @@ class CharacterInteractor(private val characterPresenter: CharacterPresenter, pr
         })
     }
 
-    fun searchComics(id: Long) {
+    fun searchComics(id: Long, offset: Int) {
         val request = NetworkService.buildService(NetworkURL::class.java, context)
-        val call = request.getCharacterComics(id)
+        val call = request.getCharacterComics(id, offset, MAX_LIMIT)
         call.enqueue(object : Callback<ComicDataWrapper> {
             override fun onResponse(call: Call<ComicDataWrapper>, response: Response<ComicDataWrapper>) {
                 if (response.isSuccessful && response.body() != null) {
                     val data = response.body()!!.data
-                    characterPresenter.onComicsSearchSuccess(data.results, data.offset, data.count, data.total)
+                    characterPresenter.onComicsSearchSuccess(id, data.results, data.offset, data.count, data.total)
                 } else {
                     characterPresenter.onComicsSearchFailure()
                 }

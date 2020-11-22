@@ -14,6 +14,7 @@ import com.android.marvelcharacters.mvp.presenter.CharacterPresenter
 import com.android.marvelcharacters.mvp.view.CharacterView
 import com.android.marvelcharacters.mvp.view.adapters.CharactersRecyclerViewAdapter
 import com.android.marvelcharacters.mvp.view.adapters.ComicsRecyclerViewAdapter
+import com.android.marvelcharacters.mvp.view.adapters.ComicsRecyclerViewOnScrollListener
 import com.android.marvelcharacters.network.dtos.MarvelComic
 
 class CharacterTab2Comics : Fragment(), CharacterView {
@@ -42,12 +43,12 @@ class CharacterTab2Comics : Fragment(), CharacterView {
             val recyclerView = rootView.findViewById<RecyclerView>(R.id.recyclerView)
             recyclerView.layoutManager = GridLayoutManager(rootView.context, 2)
             recyclerView.adapter = adapter
-            characterPresenter?.searchComics(characterId)
+            characterPresenter?.searchComics(characterId, 0)
         }
         return rootView
     }
 
-    fun onComicsSearchSuccess(comics: List<MarvelComic>, offset: Int, count: Int, total: Int) {
+    fun onComicsSearchSuccess(characterId: Long, comics: List<MarvelComic>, offset: Int, count: Int, total: Int) {
         if (offset == 0) {
             adapter?.setComics(comics)
         } else {
@@ -58,7 +59,7 @@ class CharacterTab2Comics : Fragment(), CharacterView {
         val recyclerView = rootView.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.clearOnScrollListeners()
         if (characterPresenter != null) {
-            //recyclerView.addOnScrollListener(RecyclerViewOnScrollListener(characterPresenter!!, offset, count, total))
+            recyclerView.addOnScrollListener(ComicsRecyclerViewOnScrollListener(characterPresenter!!, characterId, offset, count, total))
         }
         rootView.findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
     }

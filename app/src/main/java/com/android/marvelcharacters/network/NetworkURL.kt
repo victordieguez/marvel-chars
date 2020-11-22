@@ -22,5 +22,5 @@ interface NetworkURL {
     fun getCharacter(@Path("characterId") characterId: Long): Call<CharacterDataWrapper>
 
     @GET("characters/{characterId}/comics")
-    fun getCharacterComics(@Path("characterId") characterId: Long): Call<ComicDataWrapper>
+    fun getCharacterComics(@Path("characterId") characterId: Long, @Query("offset") offset: Int, @Query("limit") limit: Int): Call<ComicDataWrapper>
 }
