@@ -14,7 +14,7 @@ class MainPresenter(private val mainView: MainView, private val context: Context
     private val mainInteractor = MainInteractor(this, context)
 
     fun searchCharacters(name: String, offset: Int) {
-        (context as Activity).findViewById<ProgressBar>(R.id.charactersProgressBar).visibility = View.VISIBLE
+        (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.VISIBLE
         mainInteractor.searchCharacters(name, offset)
     }
 

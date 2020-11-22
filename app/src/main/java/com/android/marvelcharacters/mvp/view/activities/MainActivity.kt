@@ -48,13 +48,13 @@ class MainActivity : AppCompatActivity(), MainView {
         if (mainPresenter != null) {
             charactersRecyclerView.addOnScrollListener(CharactersRecyclerViewOnScrollListener(mainPresenter!!, characterNameEditText.text.toString(), offset, count, total))
         }
-        charactersProgressBar.visibility = View.GONE
+        progressBar.visibility = View.GONE
         hideKeyboard()
     }
 
     override fun onCharactersSearchFailure() {
         charactersRecyclerView.adapter = CharactersRecyclerViewAdapter()
-        charactersProgressBar.visibility = View.GONE
+        progressBar.visibility = View.GONE
         Toast.makeText(this, getString(R.string.characters_load_error), Toast.LENGTH_SHORT).show()
         hideKeyboard()
     }
