@@ -46,6 +46,13 @@ class CharacterTab4Events : Fragment(), CharacterView {
         return rootView
     }
 
+    /**
+     * Listener called when any events search returns data successfully
+     * @param events New events loaded from the API to be added to the list
+     * @param offset Number used to identify the position of the first event of this list in the total amount (if it's 0 we are on the first page, if not the second page has been loaded)
+     * @param count Number of events returned from the API
+     * @param total Total amount of events that match with the current query
+     */
     fun onEventsSearchSuccess(characterId: Long, events: List<MarvelEvent>, offset: Int, count: Int, total: Int) {
         if (offset == 0) {
             adapter?.setEvents(events)
@@ -61,6 +68,9 @@ class CharacterTab4Events : Fragment(), CharacterView {
         }
     }
 
+    /**
+     * Listener called in case of any error in events search
+     */
     fun onEventsSearchFailure() {
         rootView.findViewById<RecyclerView>(R.id.recyclerView).adapter = EventsRecyclerViewAdapter()
         Toast.makeText(rootView.context, getString(R.string.characters_load_error), Toast.LENGTH_SHORT).show()

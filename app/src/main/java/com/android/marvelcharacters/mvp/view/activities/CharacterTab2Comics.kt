@@ -46,6 +46,13 @@ class CharacterTab2Comics : Fragment(), CharacterView {
         return rootView
     }
 
+    /**
+     * Listener called when any comics search returns data successfully
+     * @param comics New comics loaded from the API to be added to the list
+     * @param offset Number used to identify the position of the first comic of this list in the total amount (if it's 0 we are on the first page, if not the second page has been loaded)
+     * @param count Number of comics returned from the API
+     * @param total Total amount of comics that match with the current query
+     */
     fun onComicsSearchSuccess(characterId: Long, comics: List<MarvelComic>, offset: Int, count: Int, total: Int) {
         if (offset == 0) {
             adapter?.setComics(comics)
@@ -61,6 +68,9 @@ class CharacterTab2Comics : Fragment(), CharacterView {
         }
     }
 
+    /**
+     * Listener called in case of any error in comics search
+     */
     fun onComicsSearchFailure() {
         rootView.findViewById<RecyclerView>(R.id.recyclerView).adapter = ComicsRecyclerViewAdapter()
         Toast.makeText(rootView.context, getString(R.string.characters_load_error), Toast.LENGTH_SHORT).show()

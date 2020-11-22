@@ -46,6 +46,13 @@ class CharacterTab3Series : Fragment(), CharacterView {
         return rootView
     }
 
+    /**
+     * Listener called when any series search returns data successfully
+     * @param series New series loaded from the API to be added to the list
+     * @param offset Number used to identify the position of the first series of this list in the total amount (if it's 0 we are on the first page, if not the second page has been loaded)
+     * @param count Number of series returned from the API
+     * @param total Total amount of series that match with the current query
+     */
     fun onSeriesSearchSuccess(characterId: Long, series: List<MarvelSeries>, offset: Int, count: Int, total: Int) {
         if (offset == 0) {
             adapter?.setSeries(series)
@@ -61,6 +68,9 @@ class CharacterTab3Series : Fragment(), CharacterView {
         }
     }
 
+    /**
+     * Listener called in case of any error in series search
+     */
     fun onSeriesSearchFailure() {
         rootView.findViewById<RecyclerView>(R.id.recyclerView).adapter = SeriesRecyclerViewAdapter()
         Toast.makeText(rootView.context, getString(R.string.characters_load_error), Toast.LENGTH_SHORT).show()
