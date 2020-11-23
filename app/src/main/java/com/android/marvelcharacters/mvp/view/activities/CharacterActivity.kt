@@ -20,4 +20,10 @@ class CharacterActivity : AppCompatActivity(), CharacterView {
             finish()
         }
     }
+
+    override fun showProgressBar() {
+    }
+
+    override fun hideProgressBar() {
+    }
 }

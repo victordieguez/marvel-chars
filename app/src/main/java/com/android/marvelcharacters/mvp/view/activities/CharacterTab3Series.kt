@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -74,5 +75,13 @@ class CharacterTab3Series : Fragment(), CharacterView {
     fun onSeriesSearchFailure() {
         rootView.findViewById<RecyclerView>(R.id.recyclerView).adapter = SeriesRecyclerViewAdapter()
         Toast.makeText(rootView.context, getString(R.string.series_load_error), Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showProgressBar() {
+        rootView.findViewById<ProgressBar>(R.id.progressBar).visibility = View.VISIBLE
+    }
+
+    override fun hideProgressBar() {
+        rootView.findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
     }
 }

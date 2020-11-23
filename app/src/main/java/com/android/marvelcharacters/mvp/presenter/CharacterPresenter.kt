@@ -1,10 +1,6 @@
 package com.android.marvelcharacters.mvp.presenter
 
-import android.app.Activity
 import android.content.Context
-import android.view.View
-import android.widget.ProgressBar
-import com.android.marvelcharacters.R
 import com.android.marvelcharacters.mvp.interactor.CharacterInteractor
 import com.android.marvelcharacters.mvp.view.CharacterView
 import com.android.marvelcharacters.mvp.view.activities.CharacterTab1Biography
@@ -21,62 +17,62 @@ class CharacterPresenter(private val characterView: CharacterView, private val c
     private val characterInteractor = CharacterInteractor(this, context)
 
     fun searchCharacter(id: Long) {
-        (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.VISIBLE
+        characterView.showProgressBar()
         characterInteractor.searchCharacter(id)
     }
 
     fun searchComics(id: Long, offset: Int) {
-        (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.VISIBLE
+        characterView.showProgressBar()
         characterInteractor.searchComics(id, offset)
     }
 
     fun searchSeries(id: Long, offset: Int) {
-        (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.VISIBLE
+        characterView.showProgressBar()
         characterInteractor.searchSeries(id, offset)
     }
 
     fun searchEvents(id: Long, offset: Int) {
-        (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.VISIBLE
+        characterView.showProgressBar()
         characterInteractor.searchEvents(id, offset)
     }
 
     fun onCharacterSearchSuccess(character: MarvelCharacter) {
-        (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
+        characterView.hideProgressBar()
         (characterView as CharacterTab1Biography).onCharacterSearchSuccess(character)
     }
 
     fun onCharacterSearchFailure() {
-        (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
+        characterView.hideProgressBar()
         (characterView as CharacterTab1Biography).onCharacterSearchFailure()
     }
 
     fun onComicsSearchSuccess(characterId: Long, comics: List<MarvelComic>, offset: Int, count: Int, total: Int) {
-        (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
+        characterView.hideProgressBar()
         (characterView as CharacterTab2Comics).onComicsSearchSuccess(characterId, comics, offset, count, total)
     }
 
     fun onComicsSearchFailure() {
-        (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
+        characterView.hideProgressBar()
         (characterView as CharacterTab2Comics).onComicsSearchFailure()
     }
 
     fun onSeriesSearchSuccess(characterId: Long, series: List<MarvelSeries>, offset: Int, count: Int, total: Int) {
-        (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
+        characterView.hideProgressBar()
         (characterView as CharacterTab3Series).onSeriesSearchSuccess(characterId, series, offset, count, total)
     }
 
     fun onSeriesSearchFailure() {
-        (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
+        characterView.hideProgressBar()
         (characterView as CharacterTab3Series).onSeriesSearchFailure()
     }
 
     fun onEventsSearchSuccess(characterId: Long, events: List<MarvelEvent>, offset: Int, count: Int, total: Int) {
-        (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
+        characterView.hideProgressBar()
         (characterView as CharacterTab4Events).onEventsSearchSuccess(characterId, events, offset, count, total)
     }
 
     fun onEventsSearchFailure() {
-        (context as Activity).findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
+        characterView.hideProgressBar()
         (characterView as CharacterTab4Events).onEventsSearchFailure()
     }
 }
