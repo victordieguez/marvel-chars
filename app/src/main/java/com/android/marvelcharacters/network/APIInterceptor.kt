@@ -31,8 +31,7 @@ class APIInterceptor(private val publicKey: String, private val privateKey: Stri
             }
             md5.toString()
         } catch (e: NoSuchAlgorithmException) {
-            return ""
-            //TODO HACER ALGO CON ESTE ERROR DE HASH: ¿EXCEPCIONES?
+            ""
         }
     }
 }
