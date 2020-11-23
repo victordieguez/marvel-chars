@@ -4,6 +4,10 @@ import com.android.marvelcharacters.network.dtos.MarvelCharacter
 
 interface MainView {
 
+    fun showProgressBar()
+
+    fun hideProgressBar()
+
     /**
      * Listener called when any characters search returns data successfully
      * @param characters New characters loaded from the API to be added to the list

@@ -37,6 +37,14 @@ class MainActivity : AppCompatActivity(), MainView {
         }
     }
 
+    override fun showProgressBar() {
+        progressBar.visibility = View.VISIBLE
+    }
+
+    override fun hideProgressBar() {
+        progressBar.visibility = View.GONE
+    }
+
     override fun onCharactersSearchSuccess(characters: List<MarvelCharacter>, offset: Int, count: Int, total: Int) {
         if (offset == 0) {
             adapter?.setCharacters(characters)
@@ -48,13 +56,11 @@ class MainActivity : AppCompatActivity(), MainView {
         if (mainPresenter != null) {
             charactersRecyclerView.addOnScrollListener(CharactersRecyclerViewOnScrollListener(mainPresenter!!, characterNameEditText.text.toString(), offset, count, total))
         }
-        progressBar.visibility = View.GONE
         hideKeyboard()
     }
 
     override fun onCharactersSearchFailure() {
         charactersRecyclerView.adapter = CharactersRecyclerViewAdapter()
-        progressBar.visibility = View.GONE
         Toast.makeText(this, getString(R.string.characters_load_error), Toast.LENGTH_SHORT).show()
         hideKeyboard()
     }
