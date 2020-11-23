@@ -73,7 +73,6 @@ class CharacterTab4Events : Fragment(), CharacterView {
      * Listener called in case of any error in events search
      */
     fun onEventsSearchFailure() {
-        rootView.findViewById<RecyclerView>(R.id.recyclerView).adapter = EventsRecyclerViewAdapter()
         Toast.makeText(rootView.context, getString(R.string.events_load_error), Toast.LENGTH_SHORT).show()
     }
 

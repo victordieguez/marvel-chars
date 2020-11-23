@@ -73,7 +73,6 @@ class CharacterTab2Comics : Fragment(), CharacterView {
      * Listener called in case of any error in comics search
      */
     fun onComicsSearchFailure() {
-        rootView.findViewById<RecyclerView>(R.id.recyclerView).adapter = ComicsRecyclerViewAdapter()
         Toast.makeText(rootView.context, getString(R.string.comics_load_error), Toast.LENGTH_SHORT).show()
     }
 

@@ -73,7 +73,6 @@ class CharacterTab3Series : Fragment(), CharacterView {
      * Listener called in case of any error in series search
      */
     fun onSeriesSearchFailure() {
-        rootView.findViewById<RecyclerView>(R.id.recyclerView).adapter = SeriesRecyclerViewAdapter()
         Toast.makeText(rootView.context, getString(R.string.series_load_error), Toast.LENGTH_SHORT).show()
     }
 
