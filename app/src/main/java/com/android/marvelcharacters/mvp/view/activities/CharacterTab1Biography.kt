@@ -72,8 +72,7 @@ class CharacterTab1Biography : Fragment(), CharacterView {
             textView.setOnClickListener {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
             }
-        } else {
-            textView.visibility = View.GONE
+            textView.visibility = View.VISIBLE
         }
     }
 
