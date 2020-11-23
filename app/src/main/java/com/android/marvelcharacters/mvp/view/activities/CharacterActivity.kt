@@ -13,12 +13,18 @@ class CharacterActivity : AppCompatActivity(), CharacterView {
         setContentView(R.layout.activity_character)
         val characterId = intent.extras?.getLong("characterId")
         title = intent.extras?.getString("name")
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         if (characterId != null) {
             tabLayout.setupWithViewPager(viewPager)
             viewPager.adapter = PagerAdapter(supportFragmentManager, characterId, applicationContext)
         } else {
             finish()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
     override fun showProgressBar() {
