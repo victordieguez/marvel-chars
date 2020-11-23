@@ -1,5 +1,7 @@
 package com.android.marvelcharacters.mvp.view.activities
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -49,6 +51,8 @@ class CharacterTab1Biography : Fragment(), CharacterView {
     fun onCharacterSearchSuccess(character: MarvelCharacter) {
         Glide.with(rootView.context).load(character.getImage()).diskCacheStrategy(DiskCacheStrategy.ALL).into(rootView.findViewById(R.id.characterImageView))
         rootView.findViewById<TextView>(R.id.descriptionTextView).text = character.description
+        setUrl(character.getUrl("detail"), rootView.findViewById(R.id.detailLinkTextView))
+        setUrl(character.getUrl("wiki"), rootView.findViewById(R.id.wikiLinkTextView))
 
         try {
             val ldt = LocalDateTime.parse(character.modified, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ"))
@@ -60,6 +64,16 @@ class CharacterTab1Biography : Fragment(), CharacterView {
             rootView.findViewById<TextView>(R.id.lastModificationTextView).text = dateString
         } catch (ignored: Exception) {
             //Some dates can come with wrong format with negative value
+        }
+    }
+
+    private fun setUrl(url: String, textView: TextView) {
+        if (url.isNotEmpty()) {
+            textView.setOnClickListener {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+            }
+        } else {
+            textView.visibility = View.GONE
         }
     }
 

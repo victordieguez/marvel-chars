@@ -15,4 +15,6 @@
     <string name="series_load_error">Error loading series</string>
     <string name="events_load_error">Error loading events</string>
     <string name="lastUpdate">Last update: %1$s</string>
+    <string name="detail">Detail</string>
+    <string name="wiki">Wiki</string>
 </resources>
