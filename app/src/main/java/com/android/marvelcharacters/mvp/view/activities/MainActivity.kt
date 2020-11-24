@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun onCharactersSearchFailure() {
-        charactersRecyclerView.adapter = CharactersRecyclerViewAdapter()
+        adapter?.setCharacters(listOf())
         Toast.makeText(this, getString(R.string.characters_load_error), Toast.LENGTH_SHORT).show()
         hideKeyboard()
     }
